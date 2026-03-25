@@ -1,3 +1,7 @@
+const rockBtn = document.getElementById('rock');
+const paperBtn = document.getElementById('paper');
+const scissorsBtn = document.getElementById('scissors');
+
 let computerScore = 0, humanScore = 0;
 
 function getComputerChoice() {
@@ -55,13 +59,13 @@ function playRound(computerSelection, humanSelection) {
 }
 
 function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const computerSelection = getComputerChoice();
-        const humanSelection = getHumanChoice();
 
-        playRound(computerSelection, humanSelection);
-        console.log(`Computer - ${computerScore} | Human - ${humanScore}`)
-    }
+    const computerSelection = getComputerChoice();
+    const humanSelection = getHumanChoice();
+
+    playRound(computerSelection, humanSelection);
+    console.log(`Computer - ${computerScore} | Human - ${humanScore}`)
+
 
     const winner = (computerScore > humanScore) ? 'Computer wins!'
                  : (computerScore < humanScore) ? 'You win!'
