@@ -1,33 +1,19 @@
 const rockBtn = document.getElementById('rock');
 const paperBtn = document.getElementById('paper');
 const scissorsBtn = document.getElementById('scissors');
+const buttons = document.querySelectorAll('button');
 
 let computerScore = 0, humanScore = 0;
 
 function getComputerChoice() {
     const COMPUTER_OPTIONS = ['Rock', 'Paper', 'Scissors'];
-
+    
     const index = Math.floor(Math.random() * 3);  // Math.floor(Math.random() * (max - min + 1) + min)
     const option = COMPUTER_OPTIONS[index];
-
-    return option;
-}
-
-function getHumanChoice() {
-    const HUMAN_OPTIONS = ['r', 'p', 's', 'rock', 'paper', 'scissors'];
     
-    let choiceInput = prompt('Enter your choice ("R" for Rock, "P" for Paper, "S" for Scissors)').toLowerCase();
-    while (!HUMAN_OPTIONS.includes(choiceInput)) {
-        choiceInput = prompt('Enter a valid choice ("R" for Rock, "P" for Paper, "S" for Scissors)').toLowerCase();
-    }
-    const choice = choiceInput[0]
-    const option = (choice === 'r') ? 'Rock'
-                 : (choice === 'p') ? 'Paper'
-                 : 'Scissors';
-
     return option;
 }
-
+        
 function playRound(computerSelection, humanSelection) {
     if (computerSelection === humanSelection) {
         console.log(`It\'s a tie! (${computerSelection})`);
@@ -58,6 +44,14 @@ function playRound(computerSelection, humanSelection) {
     }
 }
 
+buttons.forEach(button => {
+    button.addEventListener('click', e => {
+        const humanSelection = e.target.textContent;
+        const computerSelection = getComputerChoice();
+        playRound(computerSelection, humanSelection);
+    });
+});
+
 function playGame() {
 
     const computerSelection = getComputerChoice();
@@ -72,5 +66,3 @@ function playGame() {
                  : 'It\'s a tie!'
     console.log(`Game over. ${winner}`)
 }
-
-playGame()
